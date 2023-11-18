@@ -1,13 +1,22 @@
 package pro.sky.basket.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pro.sky.basket.service.basketService;
+import java.lang.Integer;
+
 import java.util.Objects;
 
+@Service
 public class basketController {
-    private final int id;
+    private final Integer id;
     private final String nameOfProduct;
-    private final int price;
+    private final Integer price;
+    private basketService service;
 
-    public basketController(int id, String nameOfProduct, int price) {
+    public basketController(Integer id, String nameOfProduct, Integer price) {
         this.id = id;
         this.nameOfProduct = nameOfProduct;
         this.price = price;
@@ -24,6 +33,8 @@ public class basketController {
     public int getPrice() {
         return price;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -47,4 +58,11 @@ public class basketController {
                 '}';
     }
 
+    @GetMapping("/store/order/add")
+    public basketController addBasketController(@RequestParam int id,
+                                                @RequestParam String nameOfProduct,
+                                                @RequestParam int price)
+    {return service.add(id, nameOfProduct, price);
+    }
 }
+

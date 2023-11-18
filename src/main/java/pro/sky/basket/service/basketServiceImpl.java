@@ -2,6 +2,7 @@ package pro.sky.basket.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
+import pro.sky.basket.controller.basketController;
 import pro.sky.basket.exception.badRequestException;
 
 import java.util.Arrays;
@@ -35,6 +36,11 @@ public class basketServiceImpl extends basketService {
     @Override
     public HashMap<Integer, Integer> get() {
         return items;
+    }
+
+    @Override
+    public basketController add(int id, String nameOfProduct, int price) {
+        return null;
     }
 
 }
