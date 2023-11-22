@@ -5,29 +5,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.basket.service.BasketService;
-import pro.sky.basket.service.BasketServiceImpl;
 
 import java.lang.Integer;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/order")
 public class BasketController {
-    private final BasketService basketService;
+    BasketService basketService;
 
     public BasketController(BasketService basketService) {
         this.basketService = basketService;
     }
 
     @GetMapping("/add")
-    public BasketServiceImpl addProduct(@RequestParam int id) {
-        return basketService.addProduct(id);
+    public void addInBasket(@RequestParam("ids") ArrayList<Integer> list) {
+        basketService.addInBasket((ArrayList<Integer>) list);
     }
 
     @GetMapping("/get")
     public List<Integer> getBasket() {
-        return basketService.getBasketInfo();
+        return basketService.getBasket();
     }
 }
 

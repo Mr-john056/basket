@@ -1,22 +1,29 @@
 package pro.sky.basket.service;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import pro.sky.basket.controller.BasketController;
-import pro.sky.basket.exception.BadRequestExceptions;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 
-public abstract class BasketService {
-    public abstract String add(String ids) throws BadRequestExceptions;
+public class BasketService {
 
-    public abstract HashMap<Integer, Integer> get();
 
-    public abstract BasketController add(int id, String nameOfProduct, int price);
+    Basket basket;
 
-    public abstract BasketServiceImpl addProduct(int id);
+    public BasketService(Basket basket) {
+        this.basket = basket;
+    }
 
-    public abstract List<Integer> getBasketInfo();
+    public void addInBasket(ArrayList<Integer> bask) {
+
+        basket.addInBasket(bask);
+    }
+
+
+    public List<Integer> getBasket() {
+        return basket.getBasket();
+    }
 }
